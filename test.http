@@ -1,0 +1,32 @@
+###
+# @name LOGIN
+POST https://api.digitalcircle.com.br/v1/auth/login
+
+{
+    "username":"{{username}}",
+    "password":"{{password}}"
+}
+
+###
+# @name ME
+GET https://api.digitalcircle.com.br/v1/auth/me
+Cookie: SESSION=Yi0OTQ-mOdUzwLOwGXLWuMHNjvAJrJrJwPVhwlb;
+
+###
+# @name MEWRONG
+GET https://api.digitalcircle.com.br/v1/auth/me?a=1
+
+###
+# @name TENANT
+GET https://api.digitalcircle.com.br/v1/auth/tenant
+
+###
+# @name PERMS
+GET https://api.digitalcircle.com.br/v1/auth/perms
+Cookie: SESSION=Yi0OTQ-mOdUzwLOwGXLWuMHNjvAJrJrJwPVhwlb;
+
+###
+# @name LOGOUT
+GET https://api.digitalcircle.com.br/v1/auth/logout
+Cookie: SESSION=Yi0OTQ-mOdUzwLOwGXLWuMHNjvAJrJrJwPVhwlb;
+

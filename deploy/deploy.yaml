@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apiauth
+spec:
+  selector:
+    matchLabels:
+      app: apiauth
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: apiauth
+    spec:
+      containers:
+        - name: apiauth
+          image: 294726603466.dkr.ecr.sa-east-1.amazonaws.com/apiauth
+          env:
+            - name: DSN
+              valueFrom:
+                configMapKeyRef:
+                  name: api
+                  key: AUTHDSN
+            - name: REDIS
+              valueFrom:
+                configMapKeyRef:
+                  name: api
+                  key: REDIS      
+          ports:
+            - containerPort: 80
+              name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apiauth
+  labels:
+    app: apiauth
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    name: http
+  selector:
+    app: apiauth              
